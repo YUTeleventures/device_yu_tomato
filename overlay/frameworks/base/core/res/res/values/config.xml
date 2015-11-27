@@ -174,4 +174,8 @@
          format is UMTS|LTE|... -->
     <string translatable="false" name="config_radio_access_family">GSM | WCDMA | LTE</string>
 
+    <!-- Older sensors are not setting event.timestamp correctly.  Setting to
+          true will use SystemClock.elapsedRealtimeNanos() to set timestamp-->
+    <bool name="config_useSystemClockforRotationSensor">true</bool>
+
 </resources>
