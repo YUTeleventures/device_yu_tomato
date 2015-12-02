@@ -10,6 +10,7 @@ persist.gps.qc_nlp_in_use=0
 persist.hwc.ptor.enable=true
 persist.radio.apm_sim_not_pwdn=1
 persist.radio.multisim.config=dsds
+ro.telephony.ril.config=simactivation
 ril.ecclist=000,08,100,101,102,110,112,118,119,120,122,911,999
 ro.com.android.mobiledata=false
 ro.config.always_show_roaming=true
