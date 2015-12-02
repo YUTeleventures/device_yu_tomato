@@ -47,7 +47,6 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "ProximitySensor.h"
 #include "GyroSensor.h"
 #include "VirtualSensor.h"
-#include "SignificantMotion.h"
 
 #include "sensors_extension.h"
 using namespace android;
@@ -73,8 +72,8 @@ enum {
 struct SensorContext {
 	char   name[SYSFS_MAXLEN]; // name of the sensor
 	char   vendor[SYSFS_MAXLEN]; // vendor of the sensor
-	char   enable_path[PATH_MAX]; // the control path of this sensor
-	char   data_path[PATH_MAX]; // the data path to get sensor events
+	char   *enable_path; // the control path of this sensor
+	char   *data_path; // the data path to get sensor events
 
 	struct sensor_t *sensor; // point to the sensor_t structure in the sensor list
 	SensorBase     *driver; // point to the sensor driver instance
@@ -90,8 +89,8 @@ struct SensorContext {
 };
 
 struct SensorEventMap {
-	char data_name[80];
-	char data_path[PATH_MAX];
+      char data_name[80];
+      char data_path[PATH_MAX];
 };
 
 struct SysfsMap {
@@ -116,17 +115,13 @@ class NativeSensorManager : public Singleton<NativeSensorManager> {
 	struct SensorEventMap event_list[MAX_SENSORS];
 	static const struct SysfsMap node_map[];
 	static const struct sensor_t virtualSensorList[];
-	static char virtualSensorName[][SYSFS_MAXLEN];
 
 	int mSensorCount;
-	bool mScanned;
-	int mEventCount;
 
 	DefaultKeyedVector<int32_t, struct SensorContext*> type_map;
 	DefaultKeyedVector<int32_t, struct SensorContext*> handle_map;
 	DefaultKeyedVector<int, struct SensorContext*> fd_map;
 
-	void compositeVirtualSensorName(const char *sensor_name, char *chip_name, int type);
 	int getNode(char *buf, char *path, const struct SysfsMap *map);
 	int getSensorListInner();
 	int getDataInfo();
@@ -135,8 +130,6 @@ class NativeSensorManager : public Singleton<NativeSensorManager> {
 	int syncDelay(int handle);
 	int initVirtualSensor(struct SensorContext *ctx, int handle, struct sensor_t info);
 	int addDependency(struct SensorContext *ctx, int handle);
-	int getEventPath(const char *sysfs_path, char *event_path);
-	int getEventPathOld(const struct SensorContext *list, char *event_path);
 public:
 	int getSensorList(const sensor_t **list);
 	inline SensorContext* getInfoByFd(int fd) { return fd_map.valueFor(fd); };

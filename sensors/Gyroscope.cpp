@@ -85,9 +85,6 @@ GyroSensor::GyroSensor(struct SensorContext *context)
 	context->data_fd = data_fd;
 	ALOGI("The gyroscope sensor path is %s",input_sysfs_path);
 	mUseAbsTimeStamp = false;
-	mSensor = *(context->sensor);
-	read_dynamic_calibrate_params(&mSensor);
-
 	enable(0, 1);
 }
 
@@ -160,7 +157,7 @@ int GyroSensor::setDelay(int32_t, int64_t delay_ns)
 	fd = open(input_sysfs_path, O_RDWR);
 	if (fd >= 0) {
 		char buf[80];
-		snprintf(buf, sizeof(buf), "%d", delay_ms);
+		sprintf(buf, "%d", delay_ms);
 		write(fd, buf, strlen(buf)+1);
 		close(fd);
 		return 0;
@@ -193,7 +190,6 @@ int GyroSensor::readEvents(sensors_event_t* data, int count)
 
 	int numEventReceived = 0;
 	input_event const* event;
-	sensors_event_t raw, result;
 
 #if FETCH_FULL_EVENT_BEFORE_RETURN
 again:
@@ -227,43 +223,18 @@ again:
 					}
 				break;
 				case SYN_REPORT:
-					if(mUseAbsTimeStamp != true) {
-						mPendingEvent.timestamp = timevalToNano(event->time);
-					}
-					if (!mEnabled) {
-						break;
-					}
-					if(mPendingEvent.timestamp >= mEnabledTime) {
-						raw = mPendingEvent;
-						if (algo != NULL) {
-							if (algo->methods->convert(&raw, &result, NULL)) {
-								ALOGE("Calibrated failed\n");
-								result = raw;
-							}
-						} else {
-							result = raw;
+					{
+						if(mUseAbsTimeStamp != true) {
+							mPendingEvent.timestamp = timevalToNano(event->time);
 						}
-						*data = result;
-						data->version = sizeof(sensors_event_t);
-						data->sensor = mPendingEvent.sensor;
-						data->type = SENSOR_TYPE_GYROSCOPE;
-						data->timestamp = mPendingEvent.timestamp;
-						/* The raw data is stored inside sensors_event_t.data after
-						 * sensors_event_t.gyroscope. Notice that the raw data is
-						 * required to composite the virtual sensor uncalibrated
-						 * gyroscope field sensor.
-						 *
-						 * data[0~2]: calibrated gyroscope field data.
-						 * data[3]: gyroscope field data accuracy.
-						 * data[4~6]: uncalibrated gyroscope field data.
-						 */
-						data->data[4] = mPendingEvent.data[0];
-						data->data[5] = mPendingEvent.data[1];
-						data->data[6] = mPendingEvent.data[2];
-						data++;
-						numEventReceived++;
+						if (mEnabled) {
+							if(mPendingEvent.timestamp >= mEnabledTime) {
+								*data++ = mPendingEvent;
+								numEventReceived++;
+							}
+							count--;
+						}
 					}
-					count--;
 				break;
 			}
 		} else {
@@ -286,35 +257,3 @@ again:
 	return numEventReceived;
 }
 
-int GyroSensor::read_dynamic_calibrate_params(struct sensor_t *sensor)
-{
-	sensors_XML& sensor_XML(sensors_XML :: getInstance());
-	struct cal_result_t cal_result;
-	int err = 0;
-
-	err = sensor_XML.read_sensors_params(sensor, &cal_result, 1);
-	if (err < 0) {
-		ALOGE("read dynamic calibrate %s sensor error\n", sensor->name);
-		cal_result.offset[0] = 0;
-		cal_result.offset[1] = 0;
-		cal_result.offset[2] = 0;
-	}
-
-	gyro_algo_args arg;
-
-	arg.bias[0] = cal_result.offset[0];
-	arg.bias[1] = cal_result.offset[1];
-	arg.bias[2] = cal_result.offset[2];
-	arg.common.sensor = *sensor;
-
-	if (algo != NULL) {
-		if (algo->methods->config(CMD_INIT, (sensor_algo_args*)&arg)) {
-			ALOGE("Init gyro calibration parameters failed\n");
-			return -1;
-		}
-	} else {
-		ALOGE("Init gyro algo error\n");
-	}
-
-	return 0;
-}

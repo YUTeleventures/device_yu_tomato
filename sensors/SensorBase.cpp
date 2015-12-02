@@ -102,7 +102,7 @@ bool SensorBase::hasPendingEvents() const {
 int64_t SensorBase::getTimestamp() {
     struct timespec t;
     t.tv_sec = t.tv_nsec = 0;
-    clock_gettime(CLOCK_BOOTTIME, &t);
+    clock_gettime(CLOCK_MONOTONIC, &t);
     return int64_t(t.tv_sec)*1000000000LL + t.tv_nsec;
 }
 
@@ -116,7 +116,7 @@ int SensorBase::openInput(const char* inputName) {
     dir = opendir(dirname);
     if(dir == NULL)
         return -1;
-    strlcpy(devname, dirname, PATH_MAX);
+    strcpy(devname, dirname);
     filename = devname + strlen(devname);
     *filename++ = '/';
     while((de = readdir(dir))) {
@@ -124,7 +124,7 @@ int SensorBase::openInput(const char* inputName) {
                 (de->d_name[1] == '\0' ||
                         (de->d_name[1] == '.' && de->d_name[2] == '\0')))
             continue;
-        strlcpy(filename, de->d_name, PATH_MAX - strlen(SYSFS_CLASS));
+        strcpy(filename, de->d_name);
         fd = open(devname, O_RDONLY);
         if (fd>=0) {
             char name[80];
@@ -132,7 +132,7 @@ int SensorBase::openInput(const char* inputName) {
                 name[0] = '\0';
             }
             if (!strcmp(name, inputName)) {
-                strlcpy(input_name, filename, PATH_MAX);
+                strcpy(input_name, filename);
                 break;
             } else {
                 close(fd);
@@ -209,7 +209,7 @@ int SensorBase::flush(int32_t handle)
          */
 
         /* Should return -EINVAL if the sensor is not enabled */
-        if ((!mEnabled) || (ctx == NULL) || (ctx->sensor->flags & SENSOR_FLAG_ONE_SHOT_MODE)) {
+        if ((!mEnabled) || (ctx == NULL)) {
                 ALOGE("handle:%d mEnabled:%d ctx:%p\n", handle, mEnabled, ctx);
                 return -EINVAL;
         }

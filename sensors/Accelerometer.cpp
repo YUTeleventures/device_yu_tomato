@@ -136,7 +136,7 @@ int AccelSensor::setDelay(int32_t, int64_t delay_ns)
 	fd = open(input_sysfs_path, O_RDWR);
 	if (fd >= 0) {
 		char buf[80];
-		snprintf(buf, sizeof(buf), "%d", delay_ms);
+		sprintf(buf, "%d", delay_ms);
 		write(fd, buf, strlen(buf)+1);
 		close(fd);
 		return 0;

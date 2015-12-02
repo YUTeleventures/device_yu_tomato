@@ -33,7 +33,6 @@ struct input_event;
 class GyroSensor : public SensorBase {
 	InputEventCircularReader mInputReader;
 	sensors_event_t mPendingEvent;
-	sensor_t mSensor;
 	bool mHasPendingEvent;
 	int64_t mEnabledTime;
 
@@ -42,7 +41,6 @@ class GyroSensor : public SensorBase {
 	float mAvgZ;
 
 	int setInitialState();
-	int read_dynamic_calibrate_params(struct sensor_t *sensor);
 
 public:
 	GyroSensor();

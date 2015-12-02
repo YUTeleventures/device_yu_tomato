@@ -84,7 +84,7 @@ __BEGIN_DECLS
 #define TEMPERATURE_NAME	"temperature"
 #define PROXIMITY_NAME		"proximity"
 #define GRAVITY_NAME		"gravity"
-#define LINEAR_ACCELERATION_NAME	"linear_acceleration"
+#define LINEAR_ACCELERATION_NAME	"liner_acceleration"
 #define ROTATION_VECTOR_NAME	"rotation_vector"
 #define RELATIVE_HUMIDITY_NAME	"relative_humidity"
 #define AMBIENT_TEMPERATURE_NAME	"ambient_temperature"
@@ -95,7 +95,6 @@ __BEGIN_DECLS
 #define STEP_COUNTER_NAME		"step_counter"
 #define STEP_DETECTOR_NAME		"step_detector"
 #define GEOMAGNETIC_ROTATION_VECTOR_NAME	"geomagnetic_field"
-#define POCKET_NAME			"pocket"
 
 /* The hardware sensor type supported by HAL */
 #define SUPPORTED_SENSORS_TYPE	( \
@@ -104,8 +103,7 @@ __BEGIN_DECLS
 		(1ULL << SENSOR_TYPE_PROXIMITY) | \
 		(1ULL << SENSOR_TYPE_LIGHT) | \
 		(1ULL << SENSOR_TYPE_GYROSCOPE ) | \
-		(1ULL << SENSOR_TYPE_PRESSURE) | \
-		(1ULL << SENSOR_TYPE_SIGNIFICANT_MOTION))
+		(1ULL << SENSOR_TYPE_PRESSURE))
 
 
 /*****************************************************************************/
@@ -153,8 +151,6 @@ static inline const char* type_to_name(int type)
 			return STEP_COUNTER_NAME;
 		case SENSOR_TYPE_GEOMAGNETIC_ROTATION_VECTOR:
 			return GEOMAGNETIC_ROTATION_VECTOR_NAME;
-		case SENSOR_TYPE_POCKET:
-			return POCKET_NAME;
 		default:
 			return "";
 	}
