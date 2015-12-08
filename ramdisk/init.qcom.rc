@@ -323,9 +323,6 @@ on property:init.svc.bootanim=stopped
     write /sys/class/devfreq/qcom,gpubw.61/bw_hwmon/io_percent 40
     write /sys/class/devfreq/qcom,mincpubw.65/governor "cpufreq"
 
-    # disable thermal core_control to update interactive gov settings
-    write /sys/module/msm_thermal/core_control/enabled 0
-
     # enable governor for perf cluster
     write /sys/devices/system/cpu/cpu0/online 1
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
@@ -349,7 +346,6 @@ on property:init.svc.bootanim=stopped
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "1 800000:90"
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 40000
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 800000
-    write /sys/module/msm_thermal/core_control/enabled 1
 
     # bring all CPUs online
     write /sys/devices/system/cpu/cpu1/online 1
