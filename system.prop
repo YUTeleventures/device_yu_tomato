@@ -1,6 +1,8 @@
 #
 # system.prop for tomato
 #
+ro.product.model=AO5510
+ro.sf.lcd_density=320
 audio.offload.pcm.16bit.enable=false
 audio.offload.pcm.24bit.enable=true
 av.streaming.offload.enable=true
