@@ -40,9 +40,6 @@ PRODUCT_PACKAGE_OVERLAYS += device/yu/tomato/overlay
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
-# Due to multi-density builds, these are set by init
-# PRODUCT_SYSTEM_PROPERTY_BLACKLIST := ro.product.model ro.sf.lcd_density #EDIT# I'll force you in props
-
 # ANT+
 PRODUCT_PACKAGES += \
     AntHalService \
@@ -67,11 +64,6 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.usb.id.ums=F000 \
     ro.usb.id.ums_adb=9015 \
     ro.usb.vid=05c6
-
-# Density / Model
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.product.model=AO5510 \
-    ro.sf.lcd_density=320
 
 # GPS
 PRODUCT_PACKAGES += \
