@@ -33,6 +33,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/yu/tomato/dt.img:dt.img
 
+# Due to multi-density builds, these are set by init
+PRODUCT_SYSTEM_PROPERTY_BLACKLIST := ro.product.model ro.sf.lcd_density
+
 # CodeAurora msm8916_64 Tree
 include device/qcom/msm8916_64/msm8916_64.mk
 
