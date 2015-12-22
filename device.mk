@@ -43,6 +43,10 @@ include device/qcom/msm8916_64/msm8916_64.mk
 DEVICE_PACKAGE_OVERLAYS += device/yu/tomato/overlay
 PRODUCT_PACKAGE_OVERLAYS += device/yu/tomato/overlay
 
+# Due to multi-density builds, these are set by init
+PRODUCT_SYSTEM_PROPERTY_BLACKLIST := ro.product.model ro.sf.lcd_density
+
+
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
