@@ -36,6 +36,7 @@ persist.rild.nitz_short_ons_0=
 persist.rild.nitz_short_ons_1=
 persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
+persist.radio.rat_on=combine
 ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
 # Start in cdma mode
@@ -63,11 +64,6 @@ debug.enable.sglscale=1
 #
 persist.cne.feature=0
 
-#
-# system props for the dpm module
-#
-persist.dpm.feature=3
-
 #system props for the MM modules
 media.stagefright.enable-player=true
 media.stagefright.enable-http=true
@@ -80,6 +76,9 @@ media.msm8929hw=0
 mm.enable.smoothstreaming=true
 mmp.enable.3g2=true
 media.aac_51_output_enabled=true
+
+# system prop for custom hls enhancements
+persist.media.hls.enhancements=false
 
 #codecs:(PARSER_)AAC AC3 AMR_NB AMR_WB ASF AVI DTS FLV 3GP 3G2 MKV MP2PS MP2TS MP3 OGG QCP WAV FLAC DIVX DIVXHD
 mm.enable.qcom_parser=3179041
@@ -114,6 +113,7 @@ bluetooth.hfp.client=1
 #
 #snapdragon value add features
 #
+ro.qc.sdk.audio.ssr=false
 ##fluencetype can be "fluence" or "fluencepro" or "none"
 ro.qc.sdk.audio.fluencetype=fluence
 persist.audio.fluence.voicecall=true
@@ -127,9 +127,12 @@ audio.offload.buffer.size.kb=64
 audio.offload.min.duration.secs=30
 #Enable offload audio video playback by default
 av.offload.enable=true
+audio.offload.video=true
 #enable voice path for PCM VoIP by default
 use.voice.path.for.pcm.voip=true
 
+#System property for FM transmitter
+ro.fm.transmitter=false
 #enable dsp gapless mode by default
 audio.offload.gapless.enabled=true
 #Audio voice concurrency related flags
@@ -148,8 +151,14 @@ persist.debug.wfd.enable=1
 #property to enable VDS WFD solution
 persist.hwc.enable_vds=1
 
+#property for vendor specific library
+ro.vendor.gt_library=libqti-gt.so
+
 #property to enable narrow search range for video encoding
 vidc.enc.narrow.searchrange=1
+
+#property to enable DS2 dap
+audio.dolby.ds2.enabled=true
 
 #HWUI properties
 ro.hwui.text_large_cache_height=2048
@@ -166,6 +175,8 @@ ro.sys.fw.trim_enable_memory=1073741824
 #Enable Delay service restart
 ro.am.reschedule_service=true
 
+# system property for PIP support
+persist.camera.pip.support=0
 
 #Enable B service adj transition by default
 ro.sys.fw.bservice_enable=true
