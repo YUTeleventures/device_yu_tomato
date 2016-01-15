@@ -49,6 +49,9 @@ TARGET_USES_AOSP := true
 # Compression
 TARGET_TRANSPARENT_COMPRESSION_METHOD := lz4
 
+# DoubleTapWake
+TARGET_TAP_TO_WAKE_NODE := "/sys/devices/virtual/touchscreen/touchscreen_dev/gesture_ctrl"
+
 # FM
 AUDIO_FEATURE_ENABLED_FM := true
 
