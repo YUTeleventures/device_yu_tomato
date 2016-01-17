@@ -1,1 +1,3 @@
 allow healthd device:dir read;
+allow healthd device:dir open;
+allow healthd self:capability dac_override;
