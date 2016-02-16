@@ -449,7 +449,7 @@ set_light_buttons(struct light_device_t* dev,
     if (brightness != 0) {
         brightness = max(50, brightness);
     }
-    write_int(BUTTONS_FILE, brightness);
+    write_int(BUTTON_FILE, brightness);
     pthread_mutex_unlock(&g_lock);
     return err;
 }
