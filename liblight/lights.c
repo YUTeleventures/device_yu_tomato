@@ -34,11 +34,6 @@
 
 #include <hardware/lights.h>
 
-#ifndef max
-#define max(a,b) ((a)<(b)?(b):(a))
-#endif
-
-
 /******************************************************************************/
 
 static pthread_once_t g_init = PTHREAD_ONCE_INIT;
@@ -439,17 +434,11 @@ set_light_buttons(struct light_device_t* dev,
         struct light_state_t const* state)
 {
     int err = 0;
-    int brightness = rgb_to_brightness(state);
     if(!dev) {
         return -1;
     }
     pthread_mutex_lock(&g_lock);
-    // TODO for now use same as screen
-    // everything below 50 is not really visible
-    if (brightness != 0) {
-        brightness = max(50, brightness);
-    }
-    write_int(BUTTON_FILE, brightness);
+    err = write_int(BUTTON_FILE, state->color & 0xFF);
     pthread_mutex_unlock(&g_lock);
     return err;
 }
