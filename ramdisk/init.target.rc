@@ -39,9 +39,6 @@ on boot
     chown system system /sys/class/leds/green/led_time
     chown system system /sys/class/leds/blue/led_time
 
-    # Enable HW backlight hardcoded to 50
-    write /sys/class/leds/button-backlight/brightness 50
-
     # Touchscreen
     chown root system /sys/devices/virtual/touchscreen/touchscreen_dev/gesture_ctrl
     chmod 0660 /sys/devices/virtual/touchscreen/touchscreen_dev/gesture_ctrl
