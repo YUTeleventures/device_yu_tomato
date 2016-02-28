@@ -43,15 +43,15 @@
 #define HVDCP_CHARGER           "USB_HVDCP"
 #define HVDCP_BLINK_TYPE        2
 
-#define RED_LED_PATH            "/sys/class/leds/red/brightness"
-#define GREEN_LED_PATH          "/sys/class/leds/green/brightness"
-#define BLUE_LED_PATH           "/sys/class/leds/blue/brightness"
-#define RED_LED_BLINK_PATH      "/sys/class/leds/red/blink"
-#define GREEN_LED_BLINK_PATH    "/sys/class/leds/green/blink"
-#define BACKLIGHT_PATH          "/sys/class/leds/lcd-backlight/brightness"
+#define RED_LED_PATH            "/sys/devices/soc.0/78b6000.i2c/i2c-0/0-0045/leds/red/brightness"
+#define GREEN_LED_PATH          "/sys/devices/soc.0/78b6000.i2c/i2c-0/0-0045/leds/green/brightness"
+#define BLUE_LED_PATH           "/sys/devices/soc.0/78b6000.i2c/i2c-0/0-0045/leds/blue/brightness"
+#define RED_LED_BLINK_PATH      "/sys/devices/soc.0/78b6000.i2c/i2c-0/0-0045/leds/red/blink"
+#define GREEN_LED_BLINK_PATH    "/sys/devices/soc.0/78b6000.i2c/i2c-0/0-0045/leds/green/blink"
+#define BACKLIGHT_PATH          "/sys/devices/soc.0/1a00000.qcom,mdss_mdp/qcom,mdss_fb_primary.128/leds/lcd-backlight/brightness"
 
-#define CHARGING_ENABLED_PATH   "/sys/class/power_supply/battery/charging_enabled"
-#define CHARGER_TYPE_PATH       "/sys/class/power_supply/usb/type"
+#define CHARGING_ENABLED_PATH   "/sys/devices/soc.0/78b8000.i2c/i2c-4/4-006a/power_supply/power_supply/battery/charging_enabled"
+#define CHARGER_TYPE_PATH       "/sys/devices/soc.0/78b8000.i2c/i2c-4/4-006a/power_supply/power_supply/usb/type"
 
 #define LOGE(x...) do { KLOG_ERROR("charger", x); } while (0)
 #define LOGW(x...) do { KLOG_WARNING("charger", x); } while (0)
