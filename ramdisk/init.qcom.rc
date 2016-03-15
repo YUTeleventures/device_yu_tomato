@@ -327,23 +327,23 @@ on property:init.svc.bootanim=stopped
     write /sys/devices/system/cpu/cpu0/online 1
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay "20000 1113600:50000"
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 70
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 90
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate 20000
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 1344000
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy 0
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "1 400000:50 960000:70 1113600:80 1344000:90"
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "1 400000:40 960000:70"
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 50000
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 200000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 400000
 
     # enable governor for power cluster
     write /sys/devices/system/cpu/cpu4/online 1
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay "25000 800000:50000"
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 70
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay "25000 998400:50000"
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 90
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate 40000
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 998400
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 1113600
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy 0
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "1 200000:50 499000:60 800000:70 998400:80"
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "1 200000:40 800000:70"
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 40000
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 200000
 
