@@ -37,7 +37,7 @@
 
 #include "init_msm.h"
 
-static int display_density = 300;
+static int display_density = 280;
 
 static void import_cmdline(char *name, int for_emulator)
 {
