@@ -1,3 +1,7 @@
+# Camera
+persist.camera.cpp.duplication=false
+persist.camera.hal.debug.mask=0
+
 # Radio
 ro.telephony.ril.config=simactivation
 persist.data.target=dpm1
