@@ -13,10 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+$(call inherit-product-if-exists, vendor/yu/tomato/tomato-vendor.mk)
 
-# WCNSS
-PRODUCT_COPY_FILES += \
-    device/qcom/msm8916_64/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
+$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
@@ -33,12 +32,12 @@ include device/qcom/msm8916_64/msm8916_64.mk
 DEVICE_PACKAGE_OVERLAYS += device/yu/tomato/overlay
 PRODUCT_PACKAGE_OVERLAYS += device/yu/tomato/overlay
 
-# Due to multi-density builds, these are set by init
-PRODUCT_SYSTEM_PROPERTY_BLACKLIST := ro.product.model ro.sf.lcd_density
-
-# Appt
+# Screen density
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+
+# Due to multi-density builds, these are set by init
+PRODUCT_SYSTEM_PROPERTY_BLACKLIST := ro.product.model ro.sf.lcd_density
 
 # ANT+
 PRODUCT_PACKAGES += \
@@ -52,7 +51,6 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    camera.msm8916 \
     libmm-qcamera
 
 # Charger
@@ -65,6 +63,10 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.usb.id.ums=F000 \
     ro.usb.id.ums_adb=9015 \
     ro.usb.vid=05c6
+
+# dtbToolYU
+PRODUCT_PACKAGES += \
+    dtbToolYU
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -93,8 +95,5 @@ PRODUCT_PACKAGES += \
 # Wifi
 PRODUCT_PACKAGES += \
     libwpa_client \
+    libwcnss_qmi \
     wcnss_service
-
-# Wifi
-PRODUCT_PACKAGES += \
-    libwcnss_qmi
