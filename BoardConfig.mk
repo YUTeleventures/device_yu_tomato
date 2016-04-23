@@ -67,6 +67,7 @@ TARGET_LIBINIT_DEFINES_FILE := device/yu/tomato/init/init_tomato.cpp
 TARGET_PROVIDES_LIBLIGHT := true
 
 # Kernel
+BOARD_CUSTOM_BOOTIMG_MK := device/yu/tomato/mkbootimg.mk
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1
 KERNEL_DEFCONFIG := cyanogenmod_tomato-64_defconfig
 TARGET_USE_CM_RAMDISK := true

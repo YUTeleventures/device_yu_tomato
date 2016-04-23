@@ -1,5 +1,3 @@
-LOCAL_PATH := $(call my-dir)
-
 #
 # Copyright (C) 2016 The YUTeleventures
 #
@@ -7,7 +5,7 @@ LOCAL_PATH := $(call my-dir)
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#      http://www.apache.org/licenses/LICENSE-2.0
+# http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,8 +14,8 @@ LOCAL_PATH := $(call my-dir)
 # limitations under the License.
 #
 
-
--include $(TOP)/$(KERNEL_DIR)/AndroidKernel.mk
+LOCAL_PATH := $(call my-dir)
+KERNEL_DIR := kernel
 
 # device.mk doesn't know about us, and we can't PRODUCT_COPY_FILES here.
 # So cp will do.
