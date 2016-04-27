@@ -41,6 +41,10 @@ on init
 
     symlink /sdcard /mnt/sdcard0
     symlink /sdcard /storage/sdcard0
+	
+	# Resotore old media inclusion - even if fuse is depreceated
+    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
+    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
 
 on fs
     mount_all fstab.qcom
