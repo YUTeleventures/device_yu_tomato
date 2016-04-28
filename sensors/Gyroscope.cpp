@@ -31,7 +31,7 @@
 #define GYRO_INPUT_DEV_NAME 	"mpu6880"
 #define GYRO_SYSFS_PATH			"/sys/class/input/input1/"
 #define GYRO_ENABLE				"gyro_enable"
-#define GYRO_DELAY				"gyro_delay"
+#define GYRO_DELAY				"device_delay"
 
 #define FETCH_FULL_EVENT_BEFORE_RETURN 	1
 #define IGNORE_EVENT_TIME 				350000000
