@@ -604,11 +604,6 @@ on property:persist.usb.hvdcp.detect=true
 on property:persist.usb.hvdcp.detect=false
     stop hvdcp
 
-service vm_bms /system/bin/vm_bms
-    user root
-    group root
-    disabled
-
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class main
@@ -677,7 +672,6 @@ on charger
    chmod 0664 /sys/devices/soc.0/78b8000.i2c/i2c-4/4-006a/power_supply/power_supply/bms/current_now
    chmod 0664 /sys/devices/soc.0/78b8000.i2c/i2c-4/4-006a/power_supply/power_supply/bms/voltage_ocv
    chmod 0664 /sys/devices/soc.0/78b8000.i2c/i2c-4/4-006a/power_supply/power_supply/usb/type
-   start vm_bms
 
 service ppd /system/bin/mm-pp-daemon
     class late_start
