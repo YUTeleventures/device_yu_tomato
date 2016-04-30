@@ -15,8 +15,6 @@
 #
 $(call inherit-product-if-exists, vendor/yu/tomato/tomato-vendor.mk)
 
-$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
-
 # Ramdisk
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,device/yu/tomato/ramdisk,root)
