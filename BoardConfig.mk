@@ -52,8 +52,6 @@ TARGET_USES_AOSP := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BOARD_HAL_STATIC_LIBRARIES := libhealthd.msm
 
-# Compression
-TARGET_TRANSPARENT_COMPRESSION_METHOD := lz4
 
 # DoubleTapWake
 TARGET_TAP_TO_WAKE_NODE := "/sys/devices/virtual/touchscreen/touchscreen_dev/gesture_ctrl"
