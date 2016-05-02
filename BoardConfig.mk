@@ -13,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+DEVICE_PATH := device/yu/tomato
+
 # inherit from common msm8916_64
 -include device/qcom/msm8916_64/BoardConfig.mk
 
@@ -32,10 +34,10 @@ TARGET_USES_QCOM_MM_AUDIO := true
 USE_CUSTOM_AUDIO_POLICY := 1
 
 # Asserts
-TARGET_BOARD_INFO_FILE ?= device/yu/tomato/board-info.txt
+TARGET_BOARD_INFO_FILE ?= $(DEVICE_PATH)/board-info.txt
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/yu/tomato/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 BLUETOOTH_HCI_USE_MCT := true
@@ -60,13 +62,13 @@ TARGET_TAP_TO_WAKE_NODE := "/sys/devices/virtual/touchscreen/touchscreen_dev/ges
 AUDIO_FEATURE_ENABLED_FM := true
 
 # Init
-TARGET_LIBINIT_DEFINES_FILE := device/yu/tomato/init/init_tomato.cpp
+TARGET_LIBINIT_DEFINES_FILE := $(DEVICE_PATH)/init/init_tomato.cpp
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
 # Kernel
-BOARD_CUSTOM_BOOTIMG_MK := device/yu/tomato/mkbootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK := $(DEVICE_PATH)/mkbootimg.mk
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1
 KERNEL_DEFCONFIG := yu_tomato_defconfig
 TARGET_USE_CM_RAMDISK := true
@@ -86,19 +88,19 @@ BLOCK_BASED_OTA := false
 BOARD_USES_QCOM_HARDWARE := false
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/yu/tomato/ramdisk/fstab.qcom
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/ramdisk/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := ABGR_8888
 TARGET_RECOVERY_DENSITY := xhdpi
 TARGET_USERIMAGES_USE_EXT4 := true
 
 # Releasetools
-TARGET_RELEASETOOLS_EXTENSIONS := device/yu/tomato
+TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += \
-    device/yu/tomato/sepolicy
+    $(DEVICE_PATH)/sepolicy
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
