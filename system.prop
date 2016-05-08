@@ -186,3 +186,8 @@ ro.sys.fw.dex2oat_thread_count=4
 #min/max cpu in core control
 ro.core_ctl_min_cpu=2
 ro.core_ctl_max_cpu=4
+
+# Perfd Properties
+ro.qualcomm.perf.cores_online=2
+ro.min_freq_0=200000
+ro.min_freq_4=200000
