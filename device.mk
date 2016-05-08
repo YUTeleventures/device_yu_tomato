@@ -74,6 +74,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     ro.product.model=YUREKA
 
+# Misc
+PRODUCT_PACKAGES += \
+    libtinyxml
+
 # Power HAL
 PRODUCT_PACKAGES += \
     power.msm8916 \
