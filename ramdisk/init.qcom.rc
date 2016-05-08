@@ -39,7 +39,7 @@ on init
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 
-    symlink /sdcard /mnt/sdcard0
+    symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
 	
 	# Resotore old media inclusion - even if fuse is depreceated
@@ -50,9 +50,6 @@ on fs
     mount_all fstab.qcom
     mkdir /persist/data 0700 system system
     restorecon_recursive /persist
-
-on post-fs
-    export_rc /system/etc/init.cne.rc
 
 # msm specific files that need to be created on /data
 on post-fs-data
@@ -457,13 +454,6 @@ on property:ro.use_data_netmgrd=false
 on property:ro.data.large_tcp_window_size=true
     write /proc/sys/net/ipv4/tcp_adv_win_scale  2
 
-service btwlancoex /system/bin/sh /system/etc/init.qcom.coex.sh
-    class late_start
-    user bluetooth
-    group bluetooth net_bt_admin inet net_admin net_raw
-    disabled
-    oneshot
-
 service p2p_supplicant /system/bin/wpa_supplicant \
     -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf \
     -I/system/etc/wifi/p2p_supplicant_overlay.conf -N \
@@ -558,12 +548,6 @@ service loc_launcher /system/bin/loc_launcher
     #loc_launcher will start as root and set its uid to gps
     class late_start
     group gps inet net_raw qcom_diag net_admin wifi
-
-service wifi-crda /system/bin/sh /system/etc/init.crda.sh
-   class late_start
-   user root
-   disabled
-   oneshot
 
 service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf
     class late_start
@@ -692,7 +676,7 @@ service wcnss-service /system/bin/wcnss_service
     group system wifi radio
     oneshot
 
-service msm_irqbalance /system/bin/msm_irqbalance -p 0,0,0,0,1,1,1,1
+service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqbalance.conf
     class core
     user root
     group root
