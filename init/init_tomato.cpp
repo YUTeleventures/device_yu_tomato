@@ -69,7 +69,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
     char density[5];
     import_kernel_cmdline(0, import_cmdline);
     snprintf(density, sizeof(density), "%d", display_density);
-    property_set(PROP_LCDDENSITY, density);
+    property_set("ro.sf.lcd_density", density);
     if (display_density == 480) {
         property_set("ro.product.model", "YU5510");
         property_set("ro.bt.name", "YU5510");
