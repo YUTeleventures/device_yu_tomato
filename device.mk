@@ -23,12 +23,19 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,device/yu/tomato/prebuilt/system,system)
 
+# Due to multi-density builds, these are set by init
+PRODUCT_SYSTEM_PROPERTY_BLACKLIST := ro.product.model ro.sf.lcd_density
+
 # CodeAurora msm8916_64 Tree
 include device/qcom/msm8916_64/msm8916_64.mk
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += device/yu/tomato/overlay
 PRODUCT_PACKAGE_OVERLAYS += device/yu/tomato/overlay
+
+# Due to multi-density builds, these are set by init
+PRODUCT_SYSTEM_PROPERTY_BLACKLIST := ro.product.model ro.sf.lcd_density
+
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
@@ -69,10 +76,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     keystore.msm8916 \
     keystore.qcom
-
-# Model
-PRODUCT_PACKAGES += \
-    ro.product.model=YUREKA
 
 # Misc
 PRODUCT_PACKAGES += \
