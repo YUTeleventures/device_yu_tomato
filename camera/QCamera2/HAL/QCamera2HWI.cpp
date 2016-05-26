@@ -1018,7 +1018,7 @@ QCamera2HardwareInterface::QCamera2HardwareInterface(uint32_t cameraId)
       mCancelAutoFocus(false),
       mActiveAF(false),
       m_HDRSceneEnabled(false),
-      mLongshotEnabled(false),
+      mLongshotEnabled(true),
       m_max_pic_width(0),
       m_max_pic_height(0),
       mLiveSnapshotThread(0),
