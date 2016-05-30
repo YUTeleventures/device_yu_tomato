@@ -1,5 +1,6 @@
 #
 # Copyright (C) 2015 The CyanogenMod Project
+# Copyright (C) 2015 The YUTeleventures
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,7 +24,7 @@ TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 TARGET_BOARD_INFO_FILE ?= $(DEVICE_PATH)/board-info.txt
 
 # Kernel
-TARGET_KERNEL_CONFIG := cyanogenmod_tomato-64_defconfig
+TARGET_KERNEL_CONFIG := yu_tomato-64_defconfig
 
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
@@ -36,32 +37,18 @@ BOARD_CAMERA_SENSORS := imx135_cp8675 imx214_cp8675 ov5648_cp8675
 TARGET_USE_VENDOR_CAMERA_EXT := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 
-# CMHW
-BOARD_HARDWARE_CLASS += $(DEVICE_PATH)/cmhw/src
-
-# Compression - Smoosh all the things
-TARGET_TRANSPARENT_COMPRESSION_METHOD := lz4
+# TAP_TO_WAKE_NODE
+TARGET_TAP_TO_WAKE_NODE := "/sys/devices/virtual/touchscreen/touchscreen_dev/gesture_ctrl"
 
 # CPU
 TARGET_CPU_CORTEX_A53 := true
-
-# Dexopt, only if we can fit that in
-ifneq ($(TARGET_TRANSPARENT_COMPRESSION_METHOD),)
-ifeq ($(HOST_OS),linux)
-  ifeq ($(TARGET_BUILD_VARIANT),user)
-    ifeq ($(WITH_DEXPREOPT),)
-      WITH_DEXPREOPT := true
-    endif
-  endif
-endif
-endif
 
 # GPS
 TARGET_GPS_HAL_PATH := $(DEVICE_PATH)/gps
 TARGET_NO_RPC := true
 
 # init
-TARGET_LIBINIT_DEFINES_FILE := $(DEVICE_PATH)/init/init_tomato.c
+TARGET_LIBINIT_DEFINES_FILE := $(DEVICE_PATH)/init/init_tomato.cpp
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
@@ -94,3 +81,9 @@ WIFI_DRIVER_MODULE_NAME := "wlan"
 
 # inherit from the proprietary version
 -include vendor/yu/tomato/BoardConfigVendor.mk
+
+#Enable Optimizations.
+CLANG_O3 := true
+STRICT_ALIASING := true
+GRAPHITE_OPTS := true
+ENABLE_GCCONLY := true
