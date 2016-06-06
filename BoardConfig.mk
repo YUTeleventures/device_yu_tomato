@@ -25,6 +25,7 @@ TARGET_BOARD_INFO_FILE ?= $(DEVICE_PATH)/board-info.txt
 
 # Kernel
 TARGET_KERNEL_CONFIG := yu_tomato-64_defconfig
+TARGET_KERNEL_SOURCE := kernel/yu/tomato
 
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
