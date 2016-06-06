@@ -1,11 +1,11 @@
 [
   {
-    "repository": "kernel_yu_msm8916",
+    "repository": "YUTeleventures/kernel_yu_msm8916",
     "target_path": "kernel/cyanogen/msm8916",
 	"branch":      "yu-mm-6.0.1"
   },
   {
-    "repository": "proprietary_vendor_yu",
+    "repository": "YUTeleventures/proprietary_vendor_yu",
     "target_path": "vendor/yu",
 	"branch":      "yu-mm-6.0.1"
   }
