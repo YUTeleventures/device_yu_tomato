@@ -29,7 +29,7 @@
 #include "sensors.h"
 
 #define FETCH_FULL_EVENT_BEFORE_RETURN	1
-#define IGNORE_EVENT_TIME				10000000
+#define IGNORE_EVENT_TIME				100
 
 #define	EVENT_TYPE_ACCEL_X	ABS_X
 #define	EVENT_TYPE_ACCEL_Y	ABS_Y
@@ -41,9 +41,9 @@
 #define CONVERT_ACCEL_Z		-ACCEL_CONVERT
 
 #define ACCEL_SENSOR_NAME	"mpu6880"
-#define ACCEL_SYSFS_PATH	"/sys/class/input/input1/"
+#define ACCEL_SYSFS_PATH	"/sys/class/input/input2/"
 #define ACCEL_ENABLE		"accel_enable"
-#define ACCEL_DELAY			"accel_delay"
+#define ACCEL_DELAY		"accel_delay"
 
 #define SMOOTHING_FACTOR    0.8
 

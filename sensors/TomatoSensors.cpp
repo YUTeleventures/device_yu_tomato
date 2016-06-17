@@ -29,7 +29,7 @@ struct sensor_t TomatoSensors::static_sensors [NUM_STATIC_SENSORS] = {
         .maxRange = (2.0f * 9.81f),
         .resolution = 1.0,
         .power = 0.23f, /* mA */
-        .minDelay = 20000,
+        .minDelay = 10000,
         .fifoReservedEventCount = 0,
         .fifoMaxEventCount = 0,
 #if defined(SENSORS_DEVICE_API_VERSION_1_3)
@@ -49,7 +49,7 @@ struct sensor_t TomatoSensors::static_sensors [NUM_STATIC_SENSORS] = {
         .maxRange = 100000.0f,
         .resolution = 1.0f,
         .power = 0.1f,
-        .minDelay = 20000,
+        .minDelay = 10000,
         .fifoReservedEventCount = 0,
         .fifoMaxEventCount = 0,
 #if defined(SENSORS_DEVICE_API_VERSION_1_3)
@@ -91,7 +91,7 @@ struct sensor_t TomatoSensors::static_sensors [NUM_STATIC_SENSORS] = {
         .maxRange = 2000.0f,
         .resolution = 0.006f,
         .power = 6.1f, /* mA */
-        .minDelay = 1200,
+        .minDelay = 10000,
         .fifoReservedEventCount = 0,
         .fifoMaxEventCount = 0,
 #if defined(SENSORS_DEVICE_API_VERSION_1_3)
