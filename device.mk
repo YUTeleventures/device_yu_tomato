@@ -122,4 +122,4 @@ PRODUCT_PACKAGES += \
     libwcnss_qmi
 
 # Inherit from msm8939-common
-$(call inherit-product, device/cyanogen/msm8939-common/msm8939.mk)
+$(call inherit-product, device/yu/msm8939-common/msm8939.mk)
