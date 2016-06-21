@@ -82,9 +82,3 @@ WIFI_DRIVER_MODULE_NAME := "wlan"
 
 # inherit from the proprietary version
 -include vendor/yu/tomato/BoardConfigVendor.mk
-
-#Enable Optimizations.
-CLANG_O3 := true
-STRICT_ALIASING := true
-GRAPHITE_OPTS := true
-ENABLE_GCCONLY := true
