@@ -28,14 +28,13 @@
 #include "GyroSensor.h"
 #include "sensors.h"
 
-#define GYRO_INPUT_DEV_NAME 	"mpu6880"
+#define GYRO_INPUT_DEV_NAME 	"mpu6880-gyro"
 #define GYRO_SYSFS_PATH			"/sys/class/input/input1/"
 #define GYRO_ENABLE				"gyro_enable"
 #define GYRO_DELAY				"gyro_delay"
 
 #define FETCH_FULL_EVENT_BEFORE_RETURN 	1
-#define IGNORE_EVENT_TIME 				350000000
-
+#define IGNORE_EVENT_TIME 				100
 #define	EVENT_TYPE_GYRO_X	ABS_RX
 #define	EVENT_TYPE_GYRO_Y	ABS_RY
 #define	EVENT_TYPE_GYRO_Z	ABS_RZ
