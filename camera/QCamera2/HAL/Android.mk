@@ -18,6 +18,7 @@ LOCAL_SRC_FILES := \
         wrapper/QualcommCamera.cpp
 
 LOCAL_CFLAGS = -Wall -Wextra -Werror
+LOCAL_CFLAGS += -DDEFAULT_FPS_RANGES
 
 #Debug logs are enabled
 #LOCAL_CFLAGS += -DDISABLE_DEBUG_LOG
