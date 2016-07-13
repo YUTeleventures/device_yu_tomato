@@ -4385,6 +4385,12 @@ int32_t QCameraParameters::initDefaultParameters()
     set(KEY_JPEG_QUALITY, 85);
     set(KEY_JPEG_THUMBNAIL_QUALITY, 85);
 
+#ifdef DEFAULT_FPS_RANGES
+        m_pCapability->fps_ranges_tbl[0].max_fps = m_pCapability->fps_ranges_tbl[0].min_fps = 30;
+        m_pCapability->fps_ranges_tbl[1].max_fps = m_pCapability->fps_ranges_tbl[1].min_fps = 30;
+        m_pCapability->fps_ranges_tbl_cnt=2;
+#endif
+
     // Set FPS ranges
     if (m_pCapability->fps_ranges_tbl_cnt > 0 &&
         m_pCapability->fps_ranges_tbl_cnt <= MAX_SIZES_CNT) {
