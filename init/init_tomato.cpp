@@ -72,8 +72,14 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
     property_set(PROP_LCDDENSITY, density);
     if (display_density == 480) {
         property_set("ro.product.model", "YU5510");
+        property_set("ro.bt.name", "YU5510");
+        property_set("ro.hotspot.name", "YUREKA-YU5510");
+        property_set("ro.direct.name", "YUREKA");
     } else {
         property_set("ro.product.model", "AO5510");
+        property_set("ro.bt.name", "AO5510");
+        property_set("ro.hotspot.name", "YUREKA-AO5510");
+        property_set("ro.direct.name", "YUREKA+");
     }
 }
 
