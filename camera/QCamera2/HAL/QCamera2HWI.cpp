@@ -1167,6 +1167,7 @@ int QCamera2HardwareInterface::openCamera()
     m_max_pic_height = 0;
     char value[PROPERTY_VALUE_MAX];
     int enable_4k2k;
+    int disable_fhd;
     size_t i;
 
     if (mCameraHandle) {
@@ -1215,6 +1216,13 @@ int QCamera2HardwareInterface::openCamera()
     property_get("persist.camera.4k2k.enable", value, "0");
     enable_4k2k = atoi(value) > 0 ? 1 : 0;
     ALOGD("%s: enable_4k2k is %d", __func__, enable_4k2k);
+    if (mCameraId == 1) {
+        ALOGD("%s: camera front disable FHD ",__func__);
+        disable_fhd = 1;
+    } else {
+        disable_fhd =0;
+    }
+
     if (!enable_4k2k) {
        //if the 4kx2k size exists in the supported preview size or
        //supported video size remove it
@@ -1254,6 +1262,27 @@ int QCamera2HardwareInterface::openCamera()
        if (found) {
           gCamCapability[mCameraId]->video_sizes_tbl_cnt--;
        }
+    }
+
+    if (disable_fhd) {
+        bool found;
+       cam_dimension_t size_fhd;
+       size_fhd.width = 1920;
+       size_fhd.height = 1080;
+      found = removeSizeFromList(gCamCapability[mCameraId]->preview_sizes_tbl,
+                                  gCamCapability[mCameraId]->preview_sizes_tbl_cnt,
+                                  size_fhd);
+      if (found) {
+          gCamCapability[mCameraId]->preview_sizes_tbl_cnt--;
+      }
+
+      found = removeSizeFromList(gCamCapability[mCameraId]->video_sizes_tbl,
+                                  gCamCapability[mCameraId]->video_sizes_tbl_cnt,
+                                  size_fhd);
+       if (found) {
+          gCamCapability[mCameraId]->video_sizes_tbl_cnt--;
+       }
+
     }
 
     int32_t rc = m_postprocessor.init(jpegEvtHandle, this);

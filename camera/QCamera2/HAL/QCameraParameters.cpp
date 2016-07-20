@@ -767,7 +767,8 @@ QCameraParameters::QCameraParameters()
       mFlashValue(CAM_FLASH_MODE_OFF),
       mFlashDaemonValue(CAM_FLASH_MODE_OFF),
       m_bTruePortraitOn(false),
-      m_bSensorHDREnabled(false)
+      m_bSensorHDREnabled(false),
+      m_bCam_fixup(true)
 {
     char value[PROPERTY_VALUE_MAX];
     // TODO: may move to parameter instead of sysprop
@@ -859,7 +860,8 @@ QCameraParameters::QCameraParameters(const String8 &params)
     mFlashValue(CAM_FLASH_MODE_OFF),
     mFlashDaemonValue(CAM_FLASH_MODE_OFF),
     m_bTruePortraitOn(false),
-    m_bSensorHDREnabled(false)
+    m_bSensorHDREnabled(false),
+    m_bCam_fixup(true)
 {
     memset(&m_LiveSnapshotSize, 0, sizeof(m_LiveSnapshotSize));
     m_pTorch = NULL;
@@ -4390,9 +4392,15 @@ int32_t QCameraParameters::initDefaultParameters()
     set(KEY_JPEG_THUMBNAIL_QUALITY, 85);
 
 #ifdef DEFAULT_FPS_RANGES
-        m_pCapability->fps_ranges_tbl[0].max_fps = m_pCapability->fps_ranges_tbl[0].min_fps = 30;
+        m_pCapability->fps_ranges_tbl[0].max_fps = 30;
+        m_pCapability->fps_ranges_tbl[0].min_fps = 7;
         m_pCapability->fps_ranges_tbl[1].max_fps = m_pCapability->fps_ranges_tbl[1].min_fps = 30;
         m_pCapability->fps_ranges_tbl_cnt=2;
+
+        if (m_pCapability->position == 1) {
+             m_bCam_fixup = false;
+        }
+
 #endif
 
     // Set FPS ranges
@@ -5236,6 +5244,7 @@ int32_t QCameraParameters::setPreviewFpsRange(int min_fps,
     updateParamEntry(KEY_PREVIEW_FPS_RANGE, str);
     cam_fps_range_t fps_range;
     memset(&fps_range, 0x00, sizeof(cam_fps_range_t));
+
     fps_range.min_fps = (float)min_fps / 1000.0f;
     fps_range.max_fps = (float)max_fps / 1000.0f;
     fps_range.video_min_fps = (float)vid_min_fps / 1000.0f;
@@ -5250,6 +5259,11 @@ int32_t QCameraParameters::setPreviewFpsRange(int min_fps,
         CDBG_HIGH("%s: Thermal adjusted Preview fps range %3.2f,%3.2f, %3.2f, %3.2f",
               __func__, fps_range.min_fps, fps_range.max_fps,
               fps_range.video_min_fps, fps_range.video_max_fps);
+    }
+
+    if (fps_range.max_fps > 12 && m_bCam_fixup) {
+        fps_range.video_min_fps = fps_range.max_fps *2;
+        fps_range.video_max_fps = fps_range.video_max_fps *2;
     }
 
     return AddSetParmEntryToBatch(m_pParamBuf,
