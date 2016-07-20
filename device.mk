@@ -72,7 +72,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.usb.id.ptp_adb=904E \
     ro.usb.id.ums=F000 \
     ro.usb.id.ums_adb=9015 \
-    ro.usb.vid=2a96
+    ro.usb.vid=05c6
 
 # GPS
 PRODUCT_PACKAGES += \
