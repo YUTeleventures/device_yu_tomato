@@ -18,5 +18,5 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="lock_to_app_toast_no_navbar">Это держит в виду, пока не уберем. Нажмите и удерживайте кнопку Назад отколоть.</string>
+    <string name="screen_pinning_description_no_navbar">Это держит в виду, пока не уберем. Нажмите и удерживайте кнопку Назад отколоть.</string>
 </resources>

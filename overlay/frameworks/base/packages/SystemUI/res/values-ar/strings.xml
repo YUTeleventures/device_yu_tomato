@@ -18,7 +18,7 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="lock_to_app_toast_no_navbar">هذا وتبقي في العرض حتى يتم إلغاء. اضغط مع الاستمرار العودة زر لنزع الدبوس.</string>
+    <string name="screen_pinning_description_no_navbar">هذا وتبقي في العرض حتى يتم إلغاء. اضغط مع الاستمرار العودة زر لنزع الدبوس.</string>
 </resources>
 
 
