@@ -18,5 +18,5 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="lock_to_app_toast_no_navbar">Esto mantiene a la vista hasta que la quite. Toque y mantenga presionado el botón Atrás para desanclar.</string>
+    <string name="screen_pinning_description_no_navbar">Esto mantiene a la vista hasta que la quite. Toque y mantenga presionado el botón Atrás para desanclar.</string>
 </resources>
