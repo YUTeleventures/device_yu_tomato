@@ -105,10 +105,6 @@ PRODUCT_PACKAGES += \
     fstab.qcom \
     init.target.rc
 
-# Recovery
-PRODUCT_EXTRA_RECOVERY_KEYS += \
-    $(LOCAL_PATH)/tomato-releasekey
-
 # Sensors
 PRODUCT_PACKAGES += \
     libjni_proximityCalibrate \

@@ -20,9 +20,6 @@ DEVICE_PATH := device/yu/tomato
 
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 
-# Assertions
-TARGET_BOARD_INFO_FILE ?= $(DEVICE_PATH)/board-info.txt
-
 # Kernel
 TARGET_KERNEL_CONFIG := yu_tomato-64_defconfig
 TARGET_KERNEL_SOURCE := kernel/yu/tomato
