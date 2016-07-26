@@ -39,6 +39,20 @@ on boot
     chown system system /sys/class/leds/green/led_time
     chown system system /sys/class/leds/blue/led_time
 
+    # Flashlight
+    chown system camera /sys/class/leds/flashlight/brightness
+    chown system camera /sys/class/leds/flashlight/max_brightness
+    chown system camera /sys/class/leds/flashlight/trigger
+    chmod 0660 /sys/class/leds/flashlight/brightness
+    chmod 0660 /sys/class/leds/flashlight/max_brightness
+    chmod 0660 /sys/class/leds/flashlight/trigger
+    chown system camera /sys/class/leds/torch-light0/brightness
+    chown system camera /sys/class/leds/torch-light0/max_brightness
+    chown system camera /sys/class/leds/torch-light0/trigger
+    chmod 0660 /sys/class/leds/torch-light0/brightness
+    chmod 0660 /sys/class/leds/torch-light0/max_brightness
+    chmod 0660 /sys/class/leds/torch-light0/trigger
+
     # Touchscreen
     chown root system /sys/devices/virtual/touchscreen/touchscreen_dev/gesture_ctrl
     chmod 0660 /sys/devices/virtual/touchscreen/touchscreen_dev/gesture_ctrl
