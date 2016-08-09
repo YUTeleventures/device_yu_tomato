@@ -29,6 +29,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <strings.h>
 
 #include "vendor_init.h"
 #include "property_service.h"
@@ -38,6 +39,11 @@
 #include "init_msm.h"
 
 static int display_density = 320;
+static char platform_version[PROP_VALUE_MAX];
+static char build_id[PROP_VALUE_MAX];
+static char target_build_variant[PROP_VALUE_MAX];
+static char description[PROP_VALUE_MAX];
+static char fingerprint[PROP_VALUE_MAX];
 
 static void import_cmdline(char *name, int for_emulator)
 {
@@ -53,6 +59,16 @@ static void import_cmdline(char *name, int for_emulator)
     }
 }
 
+static void get_description(const char* product)
+{
+    sprintf(description, "%s-%s %s %s MMXMR1 release-keys", product, target_build_variant, platform_version, build_id);
+}
+
+static void get_fingerprint(const char* product)
+{
+    sprintf(fingerprint, "YU/%s/%s:%s/%s/MMXMR1:%s/release-keys", product, product, platform_version, build_id, target_build_variant);
+}
+
 void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *board_type)
 {
     char device[PROP_VALUE_MAX];
@@ -66,20 +82,37 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
     if (!rc || !ISMATCH(device, "tomato"))
         return;
 
+    // Get product details
+    property_get("ro.build.version.release", platform_version);
+    property_get("ro.build.id", build_id);
+    property_get("ro.build.type", target_build_variant);
+
     char density[5];
     import_kernel_cmdline(0, import_cmdline);
     snprintf(density, sizeof(density), "%d", display_density);
     property_set(PROP_LCDDENSITY, density);
     if (display_density == 480) {
+        property_set("ro.product.device", "YUREKA");
+        property_set("ro.build.product", "YUREKA");
+        get_description("YUREKA");
+        property_set("ro.build.description", description);
+        get_fingerprint("YUREKA");
+        property_set("ro.build.fingerprint", fingerprint);
         property_set("ro.product.model", "YU5510");
         property_set("ro.bt.name", "YU5510");
         property_set("ro.hotspot.name", "YUREKA-YU5510");
         property_set("ro.direct.name", "YUREKA");
     } else {
+        property_set("ro.product.device", "YUREKAPLUS");
+        property_set("ro.build.product", "YUREKAPLUS");
+        get_description("YUREKAPLUS");
+        property_set("ro.build.description", description);
+        get_fingerprint("YUREKAPLUS");
+        property_set("ro.build.fingerprint", fingerprint);
         property_set("ro.product.model", "AO5510");
         property_set("ro.bt.name", "AO5510");
         property_set("ro.hotspot.name", "YUREKA-AO5510");
-        property_set("ro.direct.name", "YUREKA+");
+        property_set("ro.direct.name", "YUREKAPLUS");
     }
 }
 
