@@ -1,0 +1,1 @@
+require version-baseband=ZNH5Y:MPSS.DPM.1.0.2.c1-00096-M8939FAAAANVZM-1

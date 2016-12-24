@@ -27,6 +27,12 @@ TARGET_KERNEL_SOURCE := kernel/yu/tomato
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
+# Assertions
+TARGET_BOARD_INFO_FILE := $(DEVICE_PATH)/board-info.txt
+
+# Releasetools
+TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
+
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 
