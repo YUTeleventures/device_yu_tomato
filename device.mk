@@ -105,6 +105,10 @@ PRODUCT_PACKAGES += \
     fstab.qcom \
     init.target.rc
 
+# Recovery
+PRODUCT_PACKAGES += \
+    librecovery_updater_tomato
+
 # Sensors
 PRODUCT_PACKAGES += \
     libjni_proximityCalibrate \
